@@ -26,7 +26,7 @@ public class WmvPlugin extends AbstractMojo {
 		getLog().info("got project version " + version);
 		File f = directory;
 		File vInfo = new File(f.getAbsolutePath()
-				+ "/src/main/resources/wmv-info.properties");
+				+ "/src/main/resources/version.properties");
 		try {
 			getProperties()
 					.store(new FileOutputStream(vInfo), "Auto generated");
