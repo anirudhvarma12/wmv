@@ -13,7 +13,7 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-@Mojo(name = "wmv", defaultPhase=LifecyclePhase.PROCESS_SOURCES)
+@Mojo(name = "wmv", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class WmvPlugin extends AbstractMojo {
 
 	@Parameter(property = "project.version")
@@ -22,11 +22,15 @@ public class WmvPlugin extends AbstractMojo {
 	@Parameter(property = "project.basedir")
 	private File directory;
 
+	@Parameter(property = "generatedFile", defaultValue = "version.properties")
+	private String fileName;
+
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		getLog().info("got project version " + version);
+		getLog().info("Creating file " + fileName);
 		File f = directory;
-		File vInfo = new File(f.getAbsolutePath()
-				+ "/src/main/resources/version.properties");
+		File vInfo = new File(f.getAbsolutePath() + "/src/main/resources/"
+				+ fileName);
 		try {
 			getProperties()
 					.store(new FileOutputStream(vInfo), "Auto generated");
@@ -38,7 +42,7 @@ public class WmvPlugin extends AbstractMojo {
 
 	private String convertDateToString() {
 		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh-mm-ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
 		return formatter.format(date);
 	}
 
