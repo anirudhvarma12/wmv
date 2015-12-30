@@ -13,7 +13,7 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-@Mojo(name = "wmv", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
+@Mojo(name = "generate-version-info", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class WmvPlugin extends AbstractMojo {
 
 	@Parameter(property = "project.version")

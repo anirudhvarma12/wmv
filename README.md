@@ -8,19 +8,32 @@ Add the following to your `pom.xml` :
    <plugin>
 		<groupId>com.github.anirudhvarma12</groupId>
     	<artifactId>wmv-maven-plugin</artifactId>
-    	<version>1.0.0</version>
+    	<version>2.0.0</version>
     	<executions>
     		<execution>
     			<goals>
-    				<goal>wmv</goal>
+    				<goal>generate-version-info</goal>
 			    </goals>
     		</execution>
     	</executions>
     </plugin>
  ```
  
+## Custom file name
+You can change the output file name from `version.properties` to something that you like:
+```
+	<execution>
+		<goals>
+			<goal>generate-version-info</goal>
+		</goals>
+		<configuration>
+			<fileName>myVersion.properties</fileName>
+		</configuration>
+	</execution>
+```
+ 
 ## Retrieving info
-The plugin is executed when you run `mvn install`, `mvn package`, `mvn compile`, it creates a `wmv-info.properties` file in the resources folder.
+The plugin is executed when you run `mvn install`, `mvn package`, `mvn compile`, it creates a `version.properties` file in the resources folder.
 The properties looks like this - 
 ```
 	#Auto generated
