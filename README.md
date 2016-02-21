@@ -31,6 +31,20 @@ You can change the output file name from `version.properties` to something that 
 		</configuration>
 	</execution>
 ```
+
+## Custom file type
+You can change the output file type from `properties` (default) to `json` or `xml`
+```
+	<execution>
+		<goals>
+			<goal>generate-version-info</goal>
+		</goals>
+		<configuration>
+			<fileName>myVersion.properties</fileName>
+			<fileType>json</fileType><!-- or xml or properties -->
+		</configuration>
+	</execution>
+```
  
 ## Retrieving info
 The plugin is executed when you run `mvn install`, `mvn package`, `mvn compile`, it creates a `version.properties` file in the resources folder.
@@ -40,6 +54,26 @@ The properties looks like this -
 	#Wed Dec 30 00:48:15 IST 2015
 	version=0.0.2-SNAPSHOT
 	date=30-12-2015 12-48-15
+```
+
+
+XML Structure:
+
+```
+<wmv>
+	<version>2.1.0-SNAPSHOT</version>
+	<date>21-02-2016 23-46-33</date>
+</wmv>
+
+```
+
+JSON Structure:
+
+```
+{
+	"version": "2.1.0-SNAPSHOT",
+	"date": "21-02-2016 23-52-49"
+}
 ```
 
 # LICENSE
