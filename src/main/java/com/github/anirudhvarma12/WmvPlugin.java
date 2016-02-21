@@ -1,10 +1,6 @@
 package com.github.anirudhvarma12;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -22,34 +18,32 @@ public class WmvPlugin extends AbstractMojo {
 	@Parameter(property = "project.basedir")
 	private File directory;
 
-	@Parameter(property = "generatedFile", defaultValue = "version.properties")
+	@Parameter(defaultValue = "version.properties")
 	private String fileName;
+
+	@Parameter(defaultValue = PropertyWriter.TYPE_PROPERTIES)
+	private String fileType;
 
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		getLog().info("got project version " + version);
-		getLog().info("Creating file " + fileName);
+		getLog().info("Creating file " + fileName + " with format " + fileType);
 		File f = directory;
 		File vInfo = new File(f.getAbsolutePath() + "/src/main/resources/"
 				+ fileName);
 		try {
-			getProperties()
-					.store(new FileOutputStream(vInfo), "Auto generated");
-			getLog().info("Stored file - " + vInfo.getAbsolutePath());
+			if (fileType.equals(PropertyWriter.TYPE_JSON)
+					|| fileType.equals(PropertyWriter.TYPE_PROPERTIES)
+					|| fileType.equals(PropertyWriter.TYPE_XML)) {
+				PropertyWriter.write(version, fileType, vInfo);
+				getLog().info("Stored file - " + vInfo.getAbsolutePath());
+			} else {
+				throw new MojoExecutionException("fileType should be one of ["
+						+ PropertyWriter.TYPE_JSON + ", "
+						+ PropertyWriter.TYPE_PROPERTIES + ", "
+						+ PropertyWriter.TYPE_XML + "]");
+			}
 		} catch (Exception e) {
 			throw new MojoExecutionException(e.getMessage(), e);
 		}
-	}
-
-	private String convertDateToString() {
-		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
-		return formatter.format(date);
-	}
-
-	private Properties getProperties() {
-		Properties props = new Properties();
-		props.put("version", version);
-		props.put("date", convertDateToString());
-		return props;
 	}
 }
