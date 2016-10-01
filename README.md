@@ -8,7 +8,7 @@ Add the following to your `pom.xml` :
    <plugin>
 		<groupId>com.github.anirudhvarma12</groupId>
     	<artifactId>wmv-maven-plugin</artifactId>
-    	<version>2.0.1</version>
+    	<version>2.1.1</version>
     	<executions>
     		<execution>
     			<goals>
