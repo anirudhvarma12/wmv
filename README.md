@@ -45,7 +45,19 @@ You can change the output file type from `properties` (default) to `json` or `xm
 		</configuration>
 	</execution>
 ```
- 
+## Git Support
+As of v2.1.1, WMV supports reading tags from Git for version name. To enable Git integration simply add `versionProvider` tag to the `configuration`. Eg:- 
+```
+<configuration>
+	<fileName>myVersion.properties</fileName>
+	<fileType>properties</fileType>
+	<versionProvider>git</versionProvider>
+</configuration>
+```
+
+WMV will always read the latest git tag.
+
+
 ## Retrieving info
 The plugin is executed when you run `mvn install`, `mvn package`, `mvn compile`, it creates a `version.properties` file in the resources folder.
 The properties looks like this - 
