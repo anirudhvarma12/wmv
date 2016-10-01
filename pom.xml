@@ -9,7 +9,7 @@
 
 	<groupId>com.github.anirudhvarma12</groupId>
 	<artifactId>wmv-maven-plugin</artifactId>
-	<version>2.1.1</version>
+	<version>2.1.2-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<dependencies>
@@ -38,7 +38,7 @@
 		<url>https://github.com/anirudhvarma12/wmv</url>
 		<connection>scm:git:git@github.com:anirudhvarma12/wmv.git</connection>
 		<developerConnection>scm:git:git@github.com:anirudhvarma12/wmv.git</developerConnection>
-		<tag>v2.1.1</tag>
+		<tag>v2.0.0</tag>
 	</scm>
 	<issueManagement>
 		<url>https://github.com/anirudhvarma12/wmv/issues</url>
